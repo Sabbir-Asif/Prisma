@@ -38,3 +38,27 @@ npx prisma migrate dev --name init
 ```
 This command will create a new migration file in the `prisma/migrations` directory, which contains the SQL statements needed to create the `User` table in your database. It will also apply the migration to your database.
 <a href='./docs/prisma-migrate.md'>learn more about prisma migrate</a>
+
+## Step 3: install prisma client
+```bash
+npm i @prisma/client
+```
+<a href='./docs/prisma-client.md'>learn more about prisma client</a>
+
+## Step 4: generate the Prisma client
+```bash
+npx prisma generate
+```
+This command will generate the Prisma client based on your schema. The generated client will be located in the `node_modules/@prisma/client` directory.
+You can also specify a custom output directory for the generated client by modifying the `generator` block in your `schema.prisma` file. For example:
+```prisma
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+```
+This will generate the Prisma client in the `generated/client` directory instead of the default location.
+
+## Filtering
+To learn about filtering in Prisma Checkout this link: <a href='./docs/advanced-query.md'>learn more about advanced query</a>
+
