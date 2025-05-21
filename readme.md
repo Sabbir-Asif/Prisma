@@ -1,5 +1,6 @@
 <a href='https://www.prisma.io/docs/getting-started/setup-prisma/add-to-existing-project/relational-databases-typescript-postgresql'>prisma postgres doc link</a>
 
+Before start: <a href='./docs//prisma.md'>learn what is prisma</a>
 ## Installation
 
 ```bash
