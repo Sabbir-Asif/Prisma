@@ -14,16 +14,26 @@ npx prisma init
 ```
 This command will create a new directory called `prisma` in your project root, which contains a file named `schema.prisma`. This file is where you define your database schema and Prisma client configuration.
 
+## Step 1: configure your database connection
+
+```js
+//.env
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA"
+```
+
+## Step 2: define your data model
+
 ```prisma
 // prisma/schema.prisma
-generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/prisma"
-}
-
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+model User {
+  id Int @id @default(autoincrement())
+  name String
 }
 ```
-we need `schema.prisma` file to define our database schema and Prisma client configuration. The `generator` block specifies that we want to generate a Prisma client in the `../generated/prisma` directory, and the `datasource` block specifies that we are using PostgreSQL as our database provider. The `url` field should point to your PostgreSQL database connection string, which you can set in an `.env` file.
+
+But this model does not have any connection to your database yet. You need to run 
+```bash
+npx prisma migrate dev --name init
+```
+This command will create a new migration file in the `prisma/migrations` directory, which contains the SQL statements needed to create the `User` table in your database. It will also apply the migration to your database.
+<a href='./docs/prisma-migrate.md'>learn more about prisma migrate</a>
